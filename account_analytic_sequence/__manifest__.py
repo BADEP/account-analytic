@@ -10,6 +10,10 @@
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/account-analytic",
     "depends": ["analytic"],
-    "data": ["data/sequence.xml"],
+    "data": [
+        "data/sequence.xml",
+        "views/account_analytic_plan_views.xml",
+        "views/account_analytic_account_views.xml",
+    ],
     "post_init_hook": "post_init_hook",
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_analytic_account_form_resequence" model="ir.ui.view">
+        <field name="name">account.analytic.account.form.resequence</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <button
+                    name="action_resequence"
+                    type="object"
+                    string="Resequence"
+                    icon="fa-refresh"
+                    class="oe_link"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

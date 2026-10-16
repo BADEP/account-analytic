@@ -32,12 +32,25 @@ Account Analytic Sequence
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module restores the sequence for an analytic account.
+This module restores automatic codes for analytic accounts. Each analytic plan
+can use its own sequence; plans without a configured sequence use the global
+analytic account sequence.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Usage
+=====
+
+Configure an **Analytic Account Sequence** on an analytic plan to generate
+account codes from that sequence. If no sequence is configured, newly created
+analytic accounts use the default global sequence.
+
+Use the **Resequence** button next to an analytic account's code to assign the
+next code from its plan's sequence, or from the default sequence when the plan
+has no sequence configured.
 
 Bug Tracker
 ===========
