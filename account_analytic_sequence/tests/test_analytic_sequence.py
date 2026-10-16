@@ -20,7 +20,50 @@ class TestAccountAnalyticSequence(BaseCommon):
 
     def test_account_analytic_account_code(self):
         self.assertTrue(self.analytic.code, "Sequence not added")
+        self.assertTrue(self.analytic.code.startswith("AA"))
         analytic2 = self.analytic_account_obj.create(
             {"name": "Test 2", "plan_id": self.plan.id, "code": "TEST"}
         )
         self.assertEqual(analytic2.code, "TEST")
+
+    def test_plan_sequence_used(self):
+        sequence = self.env["ir.sequence"].create(
+            {
+                "name": "Analytic account plan sequence",
+                "code": "test.analytic.account.plan",
+                "prefix": "PLAN/",
+                "padding": 4,
+                "company_id": False,
+            }
+        )
+        self.plan.sequence_id = sequence
+
+        analytic = self.analytic_account_obj.create(
+            {"name": "Plan sequence account", "plan_id": self.plan.id}
+        )
+
+        self.assertEqual(analytic.code, "PLAN/0001")
+
+    def test_resequence_uses_plan_sequence(self):
+        sequence = self.env["ir.sequence"].create(
+            {
+                "name": "Analytic account resequence",
+                "code": "test.analytic.account.resequence",
+                "prefix": "NEXT/",
+                "padding": 3,
+                "company_id": False,
+            }
+        )
+        self.plan.sequence_id = sequence
+        self.analytic.code = "MANUAL"
+
+        self.analytic.action_resequence()
+
+        self.assertEqual(self.analytic.code, "NEXT/001")
+
+    def test_resequence_falls_back_to_default_sequence(self):
+        self.analytic.code = "MANUAL"
+
+        self.analytic.action_resequence()
+
+        self.assertTrue(self.analytic.code.startswith("AA"))
