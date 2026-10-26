@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="analytic_distribution_manual_comp_rule" model="ir.rule">
         <field name="name">Analytic Manual Distribution multi company rule</field>
